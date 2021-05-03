@@ -20,6 +20,20 @@ def read_data(file_name, key='ordered_numbers'):
 
     return seqs[key]
 
+def recursive_binary_search(list, value, left_list, right_list):
+    middle = right_list // 2
+    while right_list >= left_list:
+        if list[middle] == value:
+            return middle
+        elif list[middle] < value:
+            left_list = middle + 1
+            middle = (left_list + right_list) // 2
+        elif list[middle] > value:
+            right_list = middle - 1
+            middle = (left_list + right_list) // 2
+    return -1
+
+
 
 def binary_search(seq, number):
     """
@@ -46,7 +60,7 @@ def main(file_name, number):
     sequence = read_data(file_name=file_name, key='ordered_numbers')
 
     # iterative binary search
-    binary_search(sequence, number=number)
+    print(binary_search(sequence, number=number))
 
 
 if __name__ == '__main__':
